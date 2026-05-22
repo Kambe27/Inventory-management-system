@@ -15,3 +15,7 @@ Inventory Management System
 2) Once framework done, can move on to connecting parts as well as implementing the JSON to store data.
 3) Work on the Import function.
 4) Tests + Debugging.
+
+
+# Sources 
+https://www.w3schools.com/python/

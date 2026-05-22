@@ -27,20 +27,65 @@ def save_inventory(inventory):
     
     
 def add_new_item(inventory):
-    print("Add new item to inventory")
-    
+    while True:
+        clear_screen()
+        print("Add New Item to Inventory")
+        print("\n0. Back to Main Menu")
+        
+        choice = input("Enter your choice: ").strip()
+        if choice == '0':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
 def update_stock_levels(inventory):
-    print("Update stock levels")
-    
+    while True:
+        clear_screen()
+        print("Update Stock Levels")
+        print("\n0. Back to Main Menu")
+        
+        choice = input("Enter your choice: ").strip()
+        if choice == '0':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+                
 def remove_item(inventory):
-    print("Remove item from inventory")     
-    
+    while True:
+        clear_screen()
+        print("Remove Item from Inventory")
+        print("\n0. Back to Main Menu")
+        
+        choice = input("Enter your choice: ").strip()
+        if choice == '0':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+                
 def view_inventory(inventory):
-    print("Current inventory:")
-    
+    while True:
+        clear_screen()
+        print("Current Inventory")
+        print("\n0. Back to Main Menu")
+        
+        choice = input("Enter your choice: ").strip()
+        if choice == '0':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+                
 def bulk_import(inventory):
-    print("Bulk import from CSV")
-    
+    while True:
+        clear_screen()
+        print("Bulk Import from CSV")
+        print("\n0. Back to Main Menu")
+        
+        choice = input("Enter your choice: ").strip()
+        if choice == '0':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+                
 def main():
     clear_screen()
     inventory = load_inventory()
