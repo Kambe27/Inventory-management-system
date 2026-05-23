@@ -1,6 +1,58 @@
 {
-    "SKU001": {
-        "name": "XBOX ONE CONTROLLER",
-        "quantity": 33
+    "SKU-001": {
+        "name": "Wireless Mouse",
+        "quantity": 10
+    },
+    "SKU-002": {
+        "name": "USB-C Cable",
+        "quantity": 5
+    },
+    "SKU-003": {
+        "name": "Mechanical Keyboard",
+        "quantity": 12
+    },
+    "SKU-004": {
+        "name": "Laptop Stand",
+        "quantity": 8
+    },
+    "SKU-007": {
+        "name": "Unknown Item",
+        "quantity": 15
+    },
+    "SKU-008": {
+        "name": "Monitor Arm",
+        "quantity": 6
+    },
+    "SKU-009": {
+        "name": "Noise-Cancelling Headphones",
+        "quantity": 4
+    },
+    "SKU-010": {
+        "name": "Ergonomic Chair",
+        "quantity": 2
+    },
+    "SKU-011": {
+        "name": "HDMI Adapter",
+        "quantity": 30
+    },
+    "SKU-012": {
+        "name": "Standing Mat",
+        "quantity": 7
+    },
+    "SKU-013": {
+        "name": "Cable Organizer",
+        "quantity": 50
+    },
+    "SKU-014": {
+        "name": "Portable SSD 1TB",
+        "quantity": 9
+    },
+    "SKU-015": {
+        "name": "Wireless Charger",
+        "quantity": 18
+    },
+    "SKU-016": {
+        "name": "Bluetooth Speaker",
+        "quantity": 11
     }
 }

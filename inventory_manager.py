@@ -2,6 +2,7 @@
 
 import json
 import os
+from csv_importer import process_csv_file
 
 DATA_FILE = 'data/inventory_data.json'
 
@@ -155,11 +156,67 @@ def bulk_import(inventory):
     while True:
         clear_screen()
         print("Bulk Import from CSV")
+        
+        imports_folder = "imports"
+        
+        if not os.path.exists(imports_folder):
+            print(f"No '{imports_folder}' folder found. Please create one and add CSV files to import.")
+            input("Press Enter to return to the main menu...")
+            break
+        
+        csv_files = [f for f in os.listdir(imports_folder) if f.lower().endswith('.csv')]
+        
+        if not csv_files:
+            print(f"No CSV files found in the '{imports_folder}' folder. Please add files to import.")
+            input("Press Enter to return to the main menu...")
+            break
+        
+        print("Available CSV files:")
+        for idx, file in enumerate(csv_files, start=1):
+            print(f"{idx}. {file}")
+            
         print("\n0. Back to Main Menu")
         
-        choice = input("Enter your choice: ").strip()
+        choice = input("Enter the number of the CSV file to import: ").strip()
         if choice == '0':
             break
-        else:
-            print("Invalid choice. Please try again.")
+        
+        try:
+            choice_num = int(choice)
+            if choice_num < 1 or choice_num > len(csv_files):
+                print("Invalid choice. Please try again.")
+                continue
+            
+            selected_file = csv_files[choice_num - 1]
+            file_path = os.path.join(imports_folder, selected_file)
+            
+        except ValueError:
+            print("Invalid input. Please enter a number corresponding to the CSV file.")
+            continue
+        
+        print(f"Processing '{selected_file}'...")
+        report = process_csv_file(file_path, inventory)
+        
+        if "error" in report:
+            print(report["error"])
+            continue
+        
+        save_inventory(inventory)
+        
+        clear_screen()
+        
+        print(f"Import Report for '{selected_file}':")
+        print(f"Rows Processed: {report['rows_processed']}")
+        print(f"Items Updated: {report['items_updated']}")
+        print(f"New Items Added: {report['new_items_added']}")
+        
+        if report['errors']:
+            print("\nErrors:")
+            for error in report['errors']:
+                print(f"- {error}")
                 
+        input("\nPress Enter to return to the main menu...")
+        break
+    
+                
+        

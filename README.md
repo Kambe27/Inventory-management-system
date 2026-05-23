@@ -1,5 +1,7 @@
+# Simple Inventory Management System #
 
-# This is my thought process before developing anything #
+
+# This is my thought process before developing anything 
 Inventory Management System
 - Should allow the addition and removal of items, as well as updating the items. CRUD basically, create - read - update - delete.
 - Not a core feature but will consider adding filters to get the specific type of item, a certain price range etc.
@@ -11,10 +13,12 @@ Inventory Management System
 
 
 # Steps for Development
-1) Setting up the basic framework for the CLI, making a simple crud system, no storage of info yet + simple navigation.
-2) Once framework done, can move on to connecting parts as well as implementing the JSON to store data.
+~~1) Setting up the basic framework for the CLI, making a simple crud system, no storage of info yet + simple navigation.~~ Completed
+~~2) Once framework done, can move on to connecting parts as well as implementing the JSON to store data.~~ Completed
 3) Work on the Import function.
 4) Tests + Debugging.
+
+
 
 
 # Sources 
