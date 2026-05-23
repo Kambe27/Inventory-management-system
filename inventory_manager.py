@@ -3,6 +3,8 @@
 import json
 import os
 
+DATA_FILE = 'data/inventory_data.json'
+
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
     
@@ -18,13 +20,18 @@ def display_menu():
     
 
 def load_inventory():
-    print("Loading inventory...")
-    
-    return{}
+    if os.path.exists(DATA_FILE):
+        try:
+            with open(DATA_FILE, 'r') as f:
+                return json.load(f)
+        except json.JSONDecodeError:
+            print("Error loading inventory data. Starting with an empty inventory.")
+            return {}
+    return {}
 
 def save_inventory(inventory):
-    print("Saving inventory...")    
-    
+    with open(DATA_FILE, 'w') as f:
+        json.dump(inventory, f, indent=4)    
     
 def add_new_item(inventory):
     while True:
@@ -32,11 +39,38 @@ def add_new_item(inventory):
         print("Add New Item to Inventory")
         print("\n0. Back to Main Menu")
         
-        choice = input("Enter your choice: ").strip()
-        if choice == '0':
+        item_id = input("Enter Item ID (e.g SKU123): ").strip()
+        if item_id == '0':
             break
-        else:
-            print("Invalid choice. Please try again.")
+        if item_id in inventory:
+            print("Item ID already exists. Please try again.")
+            continue
+        
+        name = input("Enter Item Name: ").strip()
+        if name == '0':
+            break
+        
+        quantity = input("Enter Quantity: ").strip()
+        if quantity == '0':
+            break
+        
+        try:
+            quantity = int(quantity)
+            if quantity < 0:
+                print("Quantity cannot be negative. Please try again.")
+                continue   
+        except ValueError:
+            print("Invalid quantity. Please enter a number.")
+            continue   
+        
+        inventory[item_id] = {
+            'name': name,  
+            'quantity': quantity
+        }
+        save_inventory(inventory)
+        print(f"Item '{name}' added successfully!")
+        break
+
 
 def update_stock_levels(inventory):
     while True:
@@ -66,6 +100,16 @@ def view_inventory(inventory):
     while True:
         clear_screen()
         print("Current Inventory")
+        
+        if not inventory:
+            print("Inventory is empty.")
+        else:
+            print(f"{'Item ID':<15} {'Name':<30} {'Quantity'}")
+            print("-" * 60)
+            for item_id, details in inventory.items():
+                print(f"{item_id:<15} {details['name']:<30} {details['quantity']}")
+                        
+        
         print("\n0. Back to Main Menu")
         
         choice = input("Enter your choice: ").strip()
